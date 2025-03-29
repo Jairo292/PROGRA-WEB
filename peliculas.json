@@ -1,0 +1,44 @@
+[
+  {
+    "titulo": "Jurassic World",
+    "imagen": "jurassic.jpg",
+    "sala": ["VIP", "4DX"],
+    "categoria": "Aventura",
+    "idioma": ["Inglés", "Español"]
+  },
+  {
+    "titulo": "Interstellar",
+    "imagen": "interstellar.jpg",
+    "sala": ["4DX", "3D"],
+    "categoria": "Ciencia Ficción",
+    "idioma": ["Inglés"]
+  },
+  {
+    "titulo": "Firestarter",
+    "imagen": "firestarter.jpg",
+    "sala": ["Tradicional"],
+    "categoria": "Terror",
+    "idioma": ["Inglés"]
+  },
+  {
+    "titulo": "Bad Boys",
+    "imagen": "badboys.jpg",
+    "sala": ["Tradicional"],
+    "categoria": "Acción",
+    "idioma": ["Inglés"]
+  },
+  {
+    "titulo": "Kung Fu Panda",
+    "imagen": "kungfupanda.jpg",
+    "sala": ["4DX", "Tradicional"],
+    "categoria": "Animación",
+    "idioma": ["Español"]
+  },
+  {
+    "titulo": "No Manches Frida",
+    "imagen": "nomanchesfrida.jpg",
+    "sala": ["Tradicional", "3D"],
+    "categoria": "Comedia",
+    "idioma": ["Español"]
+  }
+]

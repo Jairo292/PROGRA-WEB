@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cinemark - Reserva de Películas</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Cinemark</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Películas</a></li>
+        <li><a href="#">Alimentos</a></li>
+        <li><a href="#">Promos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <aside class="filters">
+      <div class="group">
+        <h2>Categorías</h2>
+        <ul>
+          <li><label><input type="checkbox" /> Aventura</label></li>
+          <li><label><input type="checkbox" /> Acción</label></li>
+          <li><label><input type="checkbox" /> Animación</label></li>
+          <li><label><input type="checkbox" /> Comedia</label></li>
+          <li><label><input type="checkbox" /> Terror</label></li>
+          <li><label><input type="checkbox" /> Ciencia Ficción</label></li>
+        </ul>
+      </div>
+      <div class="group">
+        <h2>Idioma</h2>
+        <ul>
+          <li><label><input type="checkbox" /> Inglés</label></li>
+          <li><label><input type="checkbox" /> Español</label></li>
+        </ul>
+      </div>
+      <div class="group">
+        <h2>Tipo de sala</h2>
+        <ul>
+          <li><label><input type="radio" name="sala" /> Tradicional</label></li>
+          <li><label><input type="radio" name="sala" /> 3D</label></li>
+          <li><label><input type="radio" name="sala" /> 4DX</label></li>
+          <li><label><input type="radio" name="sala" /> VIP</label></li>
+        </ul>
+      </div>
+      <button id="btn-filtros">Aplicar Filtros</button>
+      <button id="btn-limpiar">Limpiar Filtros</button>
+    </aside>
+
+    <section class="contenido">
+      <div class="featured"></div>
+      <div class="movie-list"></div>
+      <div id="mensaje-sin-resultados" style="text-align:center; margin-top:20px; display:none;">
+        ❌ No hay películas que coincidan con los filtros.
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <h2>Cinemark</h2>
+        <p>Tu cine favorito desde siempre.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Contáctanos</h3>
+        <p>Tel: 800-CINEMARK</p>
+        <p>Email: contacto@cinemark.com</p>
+      </div>
+      <div class="footer-col">
+        <h3>Síguenos</h3>
+        <div class="social-icons">
+          <a href="#"><img src="facebook.png" alt="Facebook" /></a>
+          <a href="#"><img src="instagram.png" alt="Instagram" /></a>
+          <a href="#"><img src="x.png" alt="X" /></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+</body>
+</html>
