@@ -1,86 +1,131 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cinemark - Reserva de Películas</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
 </head>
 <body>
-  <header>
-    <h1>Cinemark</h1>
-    <nav>
-      <ul>
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Películas</a></li>
-        <li><a href="#">Alimentos</a></li>
-        <li><a href="#">Promos</a></li>
-      </ul>
+
+  <header class="header">
+    <!-- Botón de usuario -->
+<div class="user-container">
+  <a href="#" class="user-icon" id="userIcon" title="Menú Usuario">
+    &#128100;
+  </a>
+
+  <!-- Menú desplegable oculto -->
+  <div class="user-menu" id="userMenu">
+    <a href="login.html">Iniciar sesión</a>
+    <a href="register.html">Registrarse</a>
+    <button id="toggleDarkMode">Modo Oscuro/Claro</button>
+    <button id="toggleVoice">Lectura de Voz</button>
+  </div>
+</div>
+
+  
+    <!-- Logo centrado -->
+    <h1 class="logo">Cinemark</h1>
+  
+    <!-- Navegación hamburguesa -->
+    <nav id="navLinks" class="nav-links">
+      <a href="#">Inicio</a>
+      <a href="#">Películas</a>
+      <a href="#">Alimentos</a>
+      <a href="#">Promos</a>
     </nav>
+  
+    <!-- Botón hamburguesa -->
+    <div class="menu-hamburguesa" id="menuHamburguesa">
+      &#9776;
+    </div>
   </header>
+  
+  <div class="container">
+    <aside class="sidebar">
+      <h2>Categorías</h2>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="categoria" value="Aventura"> Aventura</label>
+        <label><input type="checkbox" name="categoria" value="Acción"> Acción</label>
+        <label><input type="checkbox" name="categoria" value="Animación"> Animación</label>
+        <label><input type="checkbox" name="categoria" value="Comedia"> Comedia</label>
+        <label><input type="checkbox" name="categoria" value="Terror"> Terror</label>
+        <label><input type="checkbox" name="categoria" value="Ciencia Ficción"> Ciencia Ficción</label>
+      </div>
 
-  <main>
-    <aside class="filters">
-      <div class="group">
-        <h2>Categorías</h2>
-        <ul>
-          <li><label><input type="checkbox" /> Aventura</label></li>
-          <li><label><input type="checkbox" /> Acción</label></li>
-          <li><label><input type="checkbox" /> Animación</label></li>
-          <li><label><input type="checkbox" /> Comedia</label></li>
-          <li><label><input type="checkbox" /> Terror</label></li>
-          <li><label><input type="checkbox" /> Ciencia Ficción</label></li>
-        </ul>
+      <h2>Idioma</h2>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="idioma" value="Inglés"> Inglés</label>
+        <label><input type="checkbox" name="idioma" value="Español"> Español</label>
       </div>
-      <div class="group">
-        <h2>Idioma</h2>
-        <ul>
-          <li><label><input type="checkbox" /> Inglés</label></li>
-          <li><label><input type="checkbox" /> Español</label></li>
-        </ul>
+
+      <h2>Tipo de sala</h2>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="sala" value="Tradicional"> Tradicional</label>
+        <label><input type="checkbox" name="sala" value="3D"> 3D</label>
+        <label><input type="checkbox" name="sala" value="4DX"> 4DX</label>
+        <label><input type="checkbox" name="sala" value="VIP"> VIP</label>
       </div>
-      <div class="group">
-        <h2>Tipo de sala</h2>
-        <ul>
-          <li><label><input type="radio" name="sala" /> Tradicional</label></li>
-          <li><label><input type="radio" name="sala" /> 3D</label></li>
-          <li><label><input type="radio" name="sala" /> 4DX</label></li>
-          <li><label><input type="radio" name="sala" /> VIP</label></li>
-        </ul>
+
+      <div class="botones-filtros">
+        <button id="aplicarFiltros">Aplicar Filtros</button>
+        <button id="limpiarFiltros">Limpiar Filtros</button>
       </div>
-      <button id="btn-filtros">Aplicar Filtros</button>
-      <button id="btn-limpiar">Limpiar Filtros</button>
     </aside>
+    <main class="main-content">
+      <section class="destacada" id="peliculaDestacada">
+        <!-- Película destacada se carga aquí -->
+      </section>
 
-    <section class="contenido">
-      <div class="featured"></div>
-      <div class="movie-list"></div>
-      <div id="mensaje-sin-resultados" style="text-align:center; margin-top:20px; display:none;">
-        ❌ No hay películas que coincidan con los filtros.
-      </div>
-    </section>
-  </main>
-
+      <section class="peliculas" id="listaPeliculas">
+        <!-- Lista de películas se carga aquí -->
+      </section>
+    </main>
+  </div> <!-- Cierre de .container -->
   <script src="script.js"></script>
-  <footer>
+  <footer class="footer">
     <div class="footer-container">
-      <div class="footer-col">
-        <h2>Cinemark</h2>
-        <p>Tu cine favorito desde siempre.</p>
+      <div class="footer-section">
+        <h4>Cartelera</h4>
+        <a href="#">Próximos Estrenos</a>
+        <a href="#">Cartelera Completa</a>
+        <a href="#">Promociones</a>
       </div>
-      <div class="footer-col">
-        <h3>Contáctanos</h3>
-        <p>Tel: 800-CINEMARK</p>
-        <p>Email: contacto@cinemark.com</p>
+  
+      <div class="footer-section">
+        <h4>Legales</h4>
+        <a href="#">Términos y Condiciones</a>
+        <a href="#">Política de Privacidad</a>
+        <a href="#">Aviso Legal</a>
       </div>
-      <div class="footer-col">
-        <h3>Síguenos</h3>
-        <div class="social-icons">
-          <a href="#"><img src="facebook.png" alt="Facebook" /></a>
-          <a href="#"><img src="instagram.png" alt="Instagram" /></a>
-          <a href="#"><img src="x.png" alt="X" /></a>
-        </div>
+  
+      <div class="footer-section">
+        <h4>Corporativo</h4>
+        <a href="#">Sobre Cinemark</a>
+        <a href="#">Inversores</a>
+        <a href="#">Afíliate</a>
       </div>
+  
+      <div class="footer-section">
+        <h4>Atención</h4>
+        <a href="#">Contáctanos</a>
+        <a href="#">Preguntas Frecuentes</a>
+        <a href="#">Sugerencias</a>
+      </div>
+    </div>
+  
+    <div class="footer-bottom">
+      <p>© 2025 Cinemark México. Todos los derechos reservados.</p>
+      <div class="footer-social">
+        <a href="#" title="Facebook" class="social-icon">📘</a>
+        <a href="#" title="Instagram" class="social-icon">📸</a>
+        <a href="#" title="YouTube" class="social-icon">📺</a>
+        <a href="#" title="TikTok" class="social-icon">🎵</a>
+      </div>
+      
     </div>
   </footer>
   

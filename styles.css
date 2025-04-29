@@ -1,198 +1,403 @@
+/* Reset general */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #1a1a1a;
-    color: white;
-    margin: 0;
-    padding: 0;
-  }
-  
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    padding: 10px 20px;
-  }
-  
-  
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 15px;
-    margin: 0;
-    padding: 0;
-  }
-  
-  nav a {
-    color: gold;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  main {
-    display: flex;
-    flex-direction: row;
-    padding: 20px;
-    gap: 20px;
-  }
-  
-  .filters {
-    width: 250px;
-    background-color: #222;
-    padding: 15px;
-    border-radius: 5px;
-    flex-shrink: 0;
-  }
-  
-  .group {
-    margin-bottom: 20px;
-  }
-  
-  .contenido {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .featured {
-    background-color: #444;
-    padding: 15px;
-    border-radius: 5px;
-    text-align: center;
-  }
-  
-  .movie-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-  }
-  
-  .movie {
-    background-color: #222;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    min-height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #111;
+  color: #fff;
+}
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  /* Glassmorphism */
+  background: rgba(34, 34, 34, 0.6); /* Fondo oscuro semitransparente */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* Soporte en Safari */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* línea sutil */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* sombreado suave */
+  border-radius: 0 0 10px 10px; /* Esquinas suaves abajo */
+}
+
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  color: yellow;
+}
+
+.user-icon {
+  font-size: 24px;
+  color: yellow;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.user-icon:hover {
+  transform: scale(1.1);
+}
+
+.header h1 {
+  font-size: 24px;
+  color: yellow;
+}
+
+/* Navegación */
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.nav-links a:hover {
+  color: yellow;
+}
+
+/* Menú hamburguesa */
+.menu-hamburguesa {
+  font-size: 30px;
+  color: yellow;
+  cursor: pointer;
+  display: none; /* Oculto por defecto en desktop */
+}
+/* Contenedor general */
+.container {
+  display: flex;
+  padding: 20px;
+}
+
+/* Sidebar de filtros */
+.sidebar {
+  width: 250px;
+  padding-right: 20px;
+}
+
+.sidebar h2 {
+  color: yellow;
+  margin-bottom: 10px;
+}
+
+.checkbox-group {
+  margin-bottom: 20px;
+}
+
+.checkbox-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+/* Botones de filtros */
+.botones-filtros {
+  margin-top: 10px;
+}
+
+.botones-filtros button {
+  margin-right: 10px;
+  margin-top: 5px;
+  padding: 8px 12px;
+  background-color: yellow;
+  color: black;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.botones-filtros button:hover {
+  background-color: #ffd700;
+}
+
+/* Contenido principal */
+.main-content {
+  flex: 1;
+}
+/* Película destacada */
+.destacada {
+  background-color: #333;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  text-align: center;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+  from {
     opacity: 0;
     transform: translateY(20px);
-    animation: fadeInUp 0.5s ease forwards;
   }
-  
-  img {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Lista de películas */
+.peliculas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* Cada tarjeta de película */
+.pelicula {
+  background-color: #222;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.pelicula img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.pelicula h3 {
+  margin-top: 10px;
+  font-size: 16px;
+  color: white;
+}
+
+.pelicula p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.pelicula button {
+  margin-top: 10px;
+  padding: 6px 10px;
+  background-color: yellow;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.pelicula button:hover {
+  background-color: #ffd700;
+}
+/* Responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+  /* Cambiar layout a columna */
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
     width: 100%;
-    height: 180px;
-    object-fit: cover;
+    margin-bottom: 20px;
+  }
+
+  /* Mostrar el menú hamburguesa */
+  .menu-hamburguesa {
+    display: block;
+  }
+
+  /* Ocultar menú normal y mostrarlo solo si activo */
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: #333;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    padding: 10px;
     border-radius: 5px;
   }
-  
-  button {
-    background-color: gold;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 4px;
-    font-weight: bold;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #ffd700;
-    color: #000;
-  }
-  
-  .movie:hover {
-    transform: scale(1.03);
-    transition: transform 0.3s ease;
-  }
-  
-  #mensaje-sin-resultados {
-    transition: opacity 0.3s ease;
-  }
-  
-  #mensaje-sin-resultados[style*="display: none"] {
-    opacity: 0;
-  }
-  
-  #mensaje-sin-resultados:not([style*="display: none"]) {
-    opacity: 1;
-  }
-  
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  /* Responsive */
-  @media (max-width: 1000px) {
-    main {
-      flex-direction: column;
-    }
-  
-    .filters {
-      width: 100%;
-    }
-  
-    .movie-list {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  @media (max-width: 600px) {
-    .movie-list {
-      grid-template-columns: 1fr;
-    }
-  }
-  footer {
-    background-color: #111;
-    color: #ccc;
-    padding: 30px 20px;
-    margin-top: 40px;
-  }
-  
-  .footer-container {
+
+  .nav-links.active {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px;
-    max-width: 1200px;
-    margin: auto;
   }
-  
-  .footer-col {
-    flex: 1;
-    min-width: 200px;
+
+  .nav-links a {
+    padding: 10px 0;
   }
-  
-  .footer-col h2,
-  .footer-col h3 {
-    color: gold;
-    margin-bottom: 10px;
-  }
-  
-  .footer-col p {
-    margin: 5px 0;
-  }
-  
-  .social-icons a {
-    display: inline-block;
-    margin-right: 10px;
-  }
-  
-  .social-icons img {
-    width: 24px;
-    height: 24px;
-    filter: brightness(1.5);
-    transition: transform 0.3s ease;
-  }
-  
-  .social-icons img:hover {
-    transform: scale(1.2);
-  }
-  
+}
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+body {
+  background: linear-gradient(180deg, #0d0d0d 0%, #1a1a1a 100%);
+}
+/* Mejoras para botones */
+button {
+  padding: 12px 20px;
+  border-radius: 8px;
+  background-color: #FFD700;
+  color: black;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background-color: #FFC300;
+  transform: translateY(-2px);
+}
+.pelicula {
+  background-color: #222;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pelicula:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(255, 255, 0, 0.2); /* efecto de sombra amarilla suave */
+}
+/* Mejora de títulos y jerarquía visual */
+h1, h2, h3 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 24px;
+  color: #FFD700;
+}
+
+h3 {
+  font-size: 18px;
+  color: #ffffff;
+}
+
+p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #ccc;
+}
+.boton-principal {
+  display: inline-block;
+  padding: 14px 24px;
+  background-color: #3b82f6;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.boton-principal:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+}
+.footer {
+  background-color: #0d0d0d;
+  color: #ccc;
+  padding: 40px 20px 20px 20px;
+  margin-top: 50px;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.footer-section {
+  min-width: 150px;
+  margin: 10px;
+}
+
+.footer-section h4 {
+  font-size: 18px;
+  color: #FFD700;
+  margin-bottom: 10px;
+}
+
+.footer-section a {
+  display: block;
+  color: #ccc;
+  text-decoration: none;
+  margin-bottom: 8px;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: white;
+}
+.user-container {
+  position: relative;
+}
+
+.user-menu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background-color: #333;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  z-index: 999;
+}
+
+.user-menu a, .user-menu button {
+  display: block;
+  background: none;
+  border: none;
+  color: white;
+  text-align: left;
+  text-decoration: none;
+  padding: 8px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.user-menu a:hover, .user-menu button:hover {
+  background-color: #555;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 12px;
+  color: #555;
+}
+.footer-social {
+  margin-top: 10px;
+}
+
+.footer-social a {
+  font-size: 24px;
+  color: #ccc;
+  margin: 0 10px;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-social a:hover {
+  color: #FFD700;
+  transform: scale(1.2);
+}

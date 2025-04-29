@@ -1,87 +1,107 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const contenedorPeliculas = document.querySelector(".movie-list");
-    const contenedorDestacada = document.querySelector(".featured");
-    const mensajeSinResultados = document.getElementById("mensaje-sin-resultados");
+// Cargar película destacada
+async function cargarPeliculaDestacada() {
+    try {
+      const response = await fetch('destacada.json');
+      const pelicula = await response.json();
+  
+      const contenedorDestacada = document.getElementById('peliculaDestacada');
+      contenedorDestacada.innerHTML = `
+        <img src="${pelicula.imagen}" alt="${pelicula.titulo}" style="width: 100%; border-radius: 8px; margin-bottom: 10px;">
+        <h2>${pelicula.titulo}</h2>
+        <div style="margin-top: 10px;">
+          <button class="boton-principal" onclick="reservarPelicula('${pelicula.titulo}')">Reservar Ahora</button>
 
-    // Cargar película destacada
-    fetch("destacada.json")
-        .then(response => response.json())
-        .then(data => {
-            contenedorDestacada.innerHTML = `
-                <img src="${data.imagen}" alt="${data.titulo}">
-                <h2>${data.titulo}</h2>
-                <div style="display:flex; justify-content:center; gap:10px;">
-                    ${data.botones.map(texto => `<button>${texto}</button>`).join('')}
-                </div>
-            `;
-        })
-        .catch(error => console.error("Error al cargar la película destacada:", error));
-
-    // Cargar todas las películas al inicio
-    fetch("peliculas.json")
-        .then(response => response.json())
-        .then(data => renderPeliculas(data))
-        .catch(error => console.error("Error al cargar películas:", error));
-
-    // Botón: aplicar filtros
-    document.getElementById("btn-filtros").addEventListener("click", () => {
-        const categoriasSeleccionadas = [];
-        const idiomasSeleccionados = [];
-        let salaSeleccionada = "";
-
-        document.querySelectorAll(".group:nth-child(1) input[type='checkbox']").forEach(cb => {
-            if (cb.checked) categoriasSeleccionadas.push(cb.parentElement.textContent.trim());
-        });
-
-        document.querySelectorAll(".group:nth-child(2) input[type='checkbox']").forEach(cb => {
-            if (cb.checked) idiomasSeleccionados.push(cb.parentElement.textContent.trim());
-        });
-
-        document.querySelectorAll(".group:nth-child(3) input[type='radio']").forEach(rb => {
-            if (rb.checked) salaSeleccionada = rb.parentElement.textContent.trim();
-        });
-
-        fetch("peliculas.json")
-            .then(response => response.json())
-            .then(data => {
-                const filtradas = data.filter(pelicula => {
-                    const cumpleCategoria = categoriasSeleccionadas.length === 0 || categoriasSeleccionadas.includes(pelicula.categoria);
-                    const cumpleIdioma = idiomasSeleccionados.length === 0 || idiomasSeleccionados.some(idioma => pelicula.idioma.includes(idioma));
-                    const cumpleSala = salaSeleccionada === "" || pelicula.sala.includes(salaSeleccionada);
-                    return cumpleCategoria && cumpleIdioma && cumpleSala;
-                });
-                renderPeliculas(filtradas);
-            })
-            .catch(error => console.error("Error al filtrar películas:", error));
-    });
-
-    // Botón: limpiar filtros
-    document.getElementById("btn-limpiar").addEventListener("click", () => {
-        document.querySelectorAll("input[type='checkbox'], input[type='radio']").forEach(input => input.checked = false);
-        mensajeSinResultados.style.display = "none";
-        fetch("peliculas.json")
-            .then(res => res.json())
-            .then(data => renderPeliculas(data));
-    });
-
-    // Función para mostrar las películas
-    function renderPeliculas(lista) {
-        contenedorPeliculas.innerHTML = "";
-        if (lista.length === 0) {
-            mensajeSinResultados.style.display = "block";
-        } else {
-            mensajeSinResultados.style.display = "none";
-            lista.forEach(pelicula => {
-                const div = document.createElement("div");
-                div.classList.add("movie");
-                div.innerHTML = `
-                    <img src="${pelicula.imagen}" alt="${pelicula.titulo}">
-                    <h3>${pelicula.titulo}</h3>
-                    <p>Sala: ${pelicula.sala.join(", ")}</p>
-                    <button>Comprar Boletos</button>
-                `;
-                contenedorPeliculas.appendChild(div);
-            });
-        }
+          <button onclick="verTrailer('${pelicula.trailer}')">Ver Tráiler</button>
+        </div>
+      `;
+    } catch (error) {
+      console.error('Error al cargar la película destacada:', error);
     }
+  }
+  
+  // Cargar lista de películas
+  async function cargarPeliculas() {
+    try {
+      const response = await fetch('peliculas.json');
+      const peliculas = await response.json();
+  
+      const listaPeliculas = document.getElementById('listaPeliculas');
+      listaPeliculas.innerHTML = '';
+  
+      peliculas.forEach(pelicula => {
+        const peliculaDiv = document.createElement('div');
+        peliculaDiv.className = 'pelicula';
+        peliculaDiv.innerHTML = `
+          <img src="${pelicula.imagen}" alt="${pelicula.titulo}">
+          <h3>${pelicula.titulo}</h3>
+          <p>Sala: ${pelicula.sala.join(', ')}</p>
+          <button onclick="comprarBoletos('${pelicula.titulo}')">Comprar Boletos</button>
+        `;
+        listaPeliculas.appendChild(peliculaDiv);
+      });
+    } catch (error) {
+      console.error('Error al cargar las películas:', error);
+    }
+  }
+ // Funciones de interacción
+function reservarPelicula(titulo) {
+    alert(`Reservaste boletos para: ${titulo}`);
+  }
+  
+  function verTrailer(url) {
+    window.open(url, '_blank');
+  }
+  
+  function comprarBoletos(titulo) {
+    alert(`Comprar boletos para: ${titulo}`);
+  }
+  
+  // Funciones para filtros
+  document.getElementById('aplicarFiltros').addEventListener('click', () => {
+    alert('Filtros aplicados (funcionalidad por desarrollar).');
+  });
+  
+  document.getElementById('limpiarFiltros').addEventListener('click', () => {
+    document.querySelectorAll('input[type=checkbox]').forEach(checkbox => checkbox.checked = false);
+    alert('Filtros limpiados.');
+  });
+ // Menú hamburguesa
+const menuHamburguesa = document.getElementById('menuHamburguesa');
+const navLinks = document.getElementById('navLinks');
+
+menuHamburguesa.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+
+// Inicializar página cargando datos
+cargarPeliculaDestacada();
+cargarPeliculas();
+  
+
+// Menú desplegable del usuario
+const userIcon = document.getElementById('userIcon');
+const userMenu = document.getElementById('userMenu');
+
+userIcon.addEventListener('click', (e) => {
+  e.preventDefault();
+  userMenu.style.display = userMenu.style.display === 'flex' ? 'none' : 'flex';
+});
+
+// Opciones del menú
+const toggleDarkMode = document.getElementById('toggleDarkMode');
+const toggleVoice = document.getElementById('toggleVoice');
+
+toggleDarkMode.addEventListener('click', () => {
+  document.body.classList.toggle('light-mode');
+});
+
+toggleVoice.addEventListener('click', () => {
+  alert('Modo de lectura activado (simulado).');
+});
+
+// (Opcional) Cerrar el menú al hacer clic afuera
+document.addEventListener('click', (e) => {
+  if (!userIcon.contains(e.target) && !userMenu.contains(e.target)) {
+    userMenu.style.display = 'none';
+  }
 });
